@@ -1,6 +1,6 @@
 <idea-plugin version="2">
     <id>com.mogujie.generatepattern</id>
-    <name>Design Pattern Generator</name>
+    <name>Generate Code</name>
     <version>1.0</version>
     <vendor email="1129090915@qq.com" url="http://www.mogujie.com">MoGuJie</vendor>
 
@@ -47,6 +47,9 @@
             <separator/>
             <action id="DesignPatternCopyAction" class="com.mogujie.pattern.impl.clone.CopyAction" text="Generate Copy"
                     description="generate a copy instance from this"/>
+            <separator/>
+            <action id="DesignPatternGenerator.MainAction" class="com.mogujie.pattern.impl.main.MainAction"
+                    text="Generate Main Method" description="generate a static main method"/>
         </group>
     </actions>
 

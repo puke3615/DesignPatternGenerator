@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class GroupAction extends AnAction {
 
-    private static final String GENERATE_DESIGN_PATTERN = "Generate Design Pattern";
+    private static final String GENERATE_DESIGN_PATTERN = "Generate Code";
     private static final String DESIGN_PATTERN_GENERATOR = "DesignPatternGroup";
 
     @Override
