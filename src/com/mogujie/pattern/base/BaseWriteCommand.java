@@ -5,7 +5,6 @@ import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
-import com.intellij.psi.impl.PsiImplUtil;
 import com.intellij.psi.search.GlobalSearchScope;
 
 /**
@@ -47,6 +46,17 @@ public abstract class BaseWriteCommand extends WriteCommandAction.Simple {
         return PsiType.getTypeByName(name, mProject, GlobalSearchScope.fileScope(mFile));
     }
 
+    protected PsiClass getPsiClass(String className) {
+        return getPsiClass(mProject, className);
+    }
+
+    protected PsiClass getPsiClass(Class cls) {
+        return getPsiClass(mProject, cls.getName());
+    }
+
+    private static PsiClass getPsiClass(Project project, String className) {
+        return JavaPsiFacade.getInstance(project).findClass(className, GlobalSearchScope.allScope(project));
+    }
 
     protected WriteCodeBlockHelper readyWriteCode(PsiCodeBlock codeBlock) {
         if (codeBlock == null) {
@@ -62,13 +72,10 @@ public abstract class BaseWriteCommand extends WriteCommandAction.Simple {
     public class WriterImportHelper {
         public WriterImportHelper add(Class... clss) {
             if (mFile instanceof PsiJavaFile) {
-                PsiImportList importList = ((PsiJavaFile) mFile).getImportList();
-                if (importList != null) {
-                    for (Class cls : clss) {
-                        PsiImportStatement importStatement = mFactory.createImportStatement(mFactory.createClass(cls.getCanonicalName()));
-                        importList.add(importStatement);
-                    }
-                    mCls.add(importList);
+                PsiJavaFile javaFile = (PsiJavaFile) mFile;
+                for (Class cls : clss) {
+                    PsiClass psiClass = getPsiClass(cls);
+                    javaFile.importClass(psiClass);
                 }
             }
             return this;

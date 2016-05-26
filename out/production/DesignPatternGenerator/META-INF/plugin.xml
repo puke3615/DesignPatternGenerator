@@ -45,8 +45,8 @@
                     text="Generate Singleton By Holder"
                     description="generate a singleton by holder"/>
             <separator/>
-            <!--<action id="De&lt;!&ndash;signPatternCopyAction" class="com.mogujie.pattern.impl.clone.CopyAction" text="Generate Copy"-->
-                    <!--descriptio&ndash;&gt;n="generate a copy instance from this"/>-->
+            <action id="DesignPatternCopyAction" class="com.mogujie.pattern.impl.clone.CopyAction" text="Generate Copy"
+                    description="generate a copy instance from this"/>
         </group>
     </actions>
 
