@@ -36,6 +36,9 @@
 
         <!-- Custom ActionGroup -->
         <group id="DesignPatternGroup">
+            <action id="DesignPatternGenerator.FindViewAction" class="com.mogujie.pattern.impl.findview.FindViewAction"
+                    text="Generate FindView" description="generate findView method"/>
+            <separator/>
             <action id="DesignPatternGenerator.SingletonByLockAction"
                     class="com.mogujie.pattern.impl.singleton.lock.SingletonByLockAction"
                     text="Generate Singleton By Lock"
@@ -44,10 +47,8 @@
                     class="com.mogujie.pattern.impl.singleton.holder.SingletonByHolderAction"
                     text="Generate Singleton By Holder"
                     description="generate a singleton by holder"/>
-            <separator/>
             <action id="DesignPatternCopyAction" class="com.mogujie.pattern.impl.clone.CopyAction" text="Generate Copy"
                     description="generate a copy instance from this"/>
-            <separator/>
             <action id="DesignPatternGenerator.MainAction" class="com.mogujie.pattern.impl.main.MainAction"
                     text="Generate Main Method" description="generate a static main method"/>
         </group>

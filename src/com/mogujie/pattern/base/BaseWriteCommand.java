@@ -105,6 +105,18 @@ public abstract class BaseWriteCommand extends WriteCommandAction.Simple {
 
     }
 
+    protected void error(String message) {
+        Util.error(mProject, message);
+    }
+
+    protected void warn(String message) {
+        Util.warn(mProject, message);
+    }
+
+    protected void info(String message) {
+        Util.info(mProject, message);
+    }
+
     protected static boolean isEmpty(Object... ss) {
         return Util.isEmpty(ss);
     }

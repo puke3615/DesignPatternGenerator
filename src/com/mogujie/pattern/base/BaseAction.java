@@ -11,12 +11,14 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiUtilBase;
 
+import java.lang.reflect.ParameterizedType;
+
 /**
  * @author jiao
  * @version 16/5/13
  * @Mark
  */
-public abstract class BaseAction extends BaseGenerateAction {
+public class BaseAction<T extends BaseWriteCommand> extends BaseGenerateAction {
 
     protected Project mProject;
     protected PsiFile mFile;
@@ -32,16 +34,30 @@ public abstract class BaseAction extends BaseGenerateAction {
     }
 
     @Override
-    public void actionPerformed(AnActionEvent e) {
-        mProject = e.getData(PlatformDataKeys.PROJECT);
-        mEditor = e.getData(PlatformDataKeys.EDITOR);
+    public void actionPerformed(AnActionEvent event) {
+        mProject = event.getData(PlatformDataKeys.PROJECT);
+        mEditor = event.getData(PlatformDataKeys.EDITOR);
         if (mProject == null || mEditor == null || (mFile = PsiUtilBase.getPsiFileInEditor(mEditor, mProject)) == null) {
             return;
         }
         mCls = getTargetClass(mEditor, mFile);
-        getCommand(mProject, mCls, mFile).execute();
+        BaseActionRunnable actionRunnable = null;
+        try {
+            Class commandCls = (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+            actionRunnable = (BaseActionRunnable) commandCls.getConstructor(Project.class, PsiClass.class, PsiFile.class).newInstance(mProject, mCls, mFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (actionRunnable == null) {
+            actionRunnable = getCommand(mProject, mCls, mFile);
+        }
+        if (actionRunnable != null) {
+            actionRunnable.execute();
+        }
     }
 
-    protected abstract BaseActionRunnable getCommand(Project project, PsiClass cls, PsiFile file);
+    protected BaseActionRunnable getCommand(Project project, PsiClass cls, PsiFile file) {
+        return null;
+    }
 
 }
