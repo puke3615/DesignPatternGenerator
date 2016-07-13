@@ -28,7 +28,7 @@ public abstract class BaseWriteCommand extends WriteCommandAction.Simple {
     }
 
     @Override
-    protected final void run() throws Throwable {
+    protected void run() throws Throwable {
         action();
         JavaCodeStyleManager manager = JavaCodeStyleManager.getInstance(mProject);
         manager.optimizeImports(mFile);
@@ -105,15 +105,15 @@ public abstract class BaseWriteCommand extends WriteCommandAction.Simple {
 
     }
 
-    protected void error(String message) {
+    public void error(String message) {
         Util.error(mProject, message);
     }
 
-    protected void warn(String message) {
+    public void warn(String message) {
         Util.warn(mProject, message);
     }
 
-    protected void info(String message) {
+    public void info(String message) {
         Util.info(mProject, message);
     }
 

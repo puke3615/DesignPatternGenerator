@@ -51,6 +51,8 @@
                     description="generate a copy instance from this"/>
             <action id="DesignPatternGenerator.MainAction" class="com.mogujie.pattern.impl.main.MainAction"
                     text="Generate Main Method" description="generate a static main method"/>
+            <action id="DesignPatternGenerator.AddActivityAction" class="com.mogujie.pattern.impl.addactivity.AddActivityAction"
+                    text="Add Activity To Manifest" description="add current activity to manifest"/>
         </group>
     </actions>
 
