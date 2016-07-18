@@ -1,5 +1,6 @@
 package com.mogujie.pattern.base;
 
+import com.intellij.notification.EventLog;
 import com.intellij.openapi.editor.markup.LineMarkerRendererEx;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtil;
@@ -19,6 +20,7 @@ import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.xml.XmlAttribute;
 import com.intellij.psi.xml.XmlTag;
 import com.intellij.ui.awt.RelativePoint;
+import com.mogujie.pattern.FileUtil;
 import com.mogujie.pattern.impl.findview.NameHook;
 import com.mogujie.pattern.impl.findview.ViewInfo;
 import com.sun.deploy.xml.XMLAttribute;
@@ -46,7 +48,8 @@ public class Util {
 
     public static void show(String format, Object... params) {
         String message = isEmpty(format) ? "" : String.format(format, params);
-        Messages.showMessageDialog(message, C.Message.TITLE, Messages.getInformationIcon());
+        FileUtil.append(message);
+//        Messages.showMessageDialog(message, C.Message.TITLE, Messages.getInformationIcon());
     }
 
     public static void error(Project project, String message) {
