@@ -9,6 +9,7 @@
 
 # Package Files #
 *.jar
+/DesignPatternGenerator.jar
 *.war
 *.ear
 

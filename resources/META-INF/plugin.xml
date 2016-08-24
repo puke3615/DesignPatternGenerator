@@ -1,6 +1,6 @@
 <idea-plugin version="2">
-    <id>com.mogujie.generatepattern</id>
-    <name>Generate Code</name>
+    <id>com.puke.generatepattern</id>
+    <name>CodeGenerator</name>
     <version>1.0</version>
     <vendor email="1129090915@qq.com" url="http://www.mogujie.com">MoGuJie</vendor>
 
@@ -20,7 +20,7 @@
 
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.java</depends>
-    <depends>org.jetbrains.android</depends>
+    <!--<depends>org.jetbrains.android</depends>-->
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
@@ -31,7 +31,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <!--<codeInsight.template.postfixTemplateProvider language="JAVA"-->
-            <!--implementationClass="com.mogujie.pattern.provider.AndroidPostfixTemplateProvider" />-->
+        <!--implementationClass="com.mogujie.pattern.provider.AndroidPostfixTemplateProvider" />-->
     </extensions>
 
     <actions>
@@ -57,7 +57,8 @@
                     description="generate a copy instance from this"/>
             <action id="DesignPatternGenerator.MainAction" class="com.mogujie.pattern.impl.main.MainAction"
                     text="Generate Main Method" description="generate a static main method"/>
-            <action id="DesignPatternGenerator.AddActivityAction" class="com.mogujie.pattern.impl.addactivity.AddActivityAction"
+            <action id="DesignPatternGenerator.AddActivityAction"
+                    class="com.mogujie.pattern.impl.addactivity.AddActivityAction"
                     text="Add Activity To Manifest" description="add current activity to manifest"/>
         </group>
     </actions>

@@ -48,8 +48,8 @@ public class Util {
 
     public static void show(String format, Object... params) {
         String message = isEmpty(format) ? "" : String.format(format, params);
-        FileUtil.append(message);
-//        Messages.showMessageDialog(message, C.Message.TITLE, Messages.getInformationIcon());
+//        FileUtil.append(message);
+        Messages.showMessageDialog(message, C.Message.TITLE, Messages.getInformationIcon());
     }
 
     public static void error(Project project, String message) {
